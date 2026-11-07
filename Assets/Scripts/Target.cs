@@ -1,24 +1,21 @@
 using UnityEngine;
 public class Target : MonoBehaviour
 {
-    public static int score = 0;
     public int maxHealth = 3;
     private int currentHealth;
-    void Start()
-    {
-        currentHealth = maxHealth;
-    }
+
+    void Start() { currentHealth = maxHealth; }
     public void Hit()
     {
+        if (currentHealth <= 0) return;
         currentHealth--;
-        Debug.Log("Health remaining: " + currentHealth);
-        if (currentHealth <= 0)
+        if (currentHealth > 0)
+            transform.localScale *= 0.9f;
+        else
         {
-            GameManager.Instance.AddScore(1);
-            //score++;
-            //Debug.Log("Target destroyed! Score: " + score);
+            if (GameManager.Instance != null)
+                GameManager.Instance.AddScore(1);
             Destroy(gameObject);
-
         }
     }
 }
