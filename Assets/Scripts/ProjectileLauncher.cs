@@ -27,7 +27,7 @@ public class ProjectileLauncher : MonoBehaviour
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.AddForce(
         firePoint.forward * launchForce,
-        ForceMode.Impulse
+        ForceMode.VelocityChange
         );
         Destroy(projectile, 5f);
     }
